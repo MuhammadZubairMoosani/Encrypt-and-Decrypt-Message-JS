@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .show {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        .encryptClass {
+            background-color: red;
+            padding: 4px 10px;
+            color: #fff;
+        }
+
+        .decryptClass {
+            background-color: lime;
+            padding: 3px 8px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    User Message <input type="text" id="userMsg" onclick="clearAll()">
+    <button id="encBtn" onclick="encryptMsgFun('encBtn')">Encrypt</button>
+    <br>
+    <br>
+    Encrypted Message: <span id="encSpanVal"></span>
+    <button class="hidden" id="decBtn" onclick="encryptMsgFun('decBtn')">Decrypt</button>
+    <br>
+    <br>
+    Original Message: <span id="decSpanVal"></span>
+</body>
+<script>
+    var arr = [];
+    var encSpan = document.getElementById('encSpanVal');
+    var decSpan = document.getElementById('decSpanVal');
+    var decBtn = document.getElementById('decBtn');
+    function encryptMsgFun(id) {
+        if (id == 'encBtn') {
+            result = [];
+            var userMsg = document.getElementById('userMsg').value.toLowerCase();
+            for (let i = 0; i < userMsg.length; i++) {
+                arr.push(userMsg[i]);
+            }
+            for (let i = 0; i < arr.length; i++) {
+                (arr[i] == 'a') ? result.push(String.fromCharCode(33)) :
+                    (arr[i] == 'b') ? result.push(String.fromCharCode(35)) :
+                        (arr[i] == 'c') ? result.push(String.fromCharCode(36)) :
+                            (arr[i] == 'd') ? result.push(String.fromCharCode(37)) :
+                                (arr[i] == 'e') ? result.push(String.fromCharCode(38)) :
+                                    (arr[i] == 'f') ? result.push(String.fromCharCode(40)) :
+                                        (arr[i] == 'g') ? result.push(String.fromCharCode(41)) :
+                                            (arr[i] == 'h') ? result.push(String.fromCharCode(42)) :
+                                                (arr[i] == 'i') ? result.push(String.fromCharCode(47)) :
+                                                    (arr[i] == 'j') ? result.push(String.fromCharCode(60)) :
+                                                        (arr[i] == 'k') ? result.push(String.fromCharCode(61)) :
+                                                            (arr[i] == 'l') ? result.push(String.fromCharCode(62)) :
+                                                                (arr[i] == 'm') ? result.push(String.fromCharCode(63)) :
+                                                                    (arr[i] == 'n') ? result.push(String.fromCharCode(64)) :
+                                                                        (arr[i] == 'o') ? result.push(String.fromCharCode(91)) :
+                                                                            (arr[i] == 'p') ? result.push(String.fromCharCode(92)) :
+                                                                                (arr[i] == 'q') ? result.push(String.fromCharCode(93)) :
+                                                                                    (arr[i] == 'r') ? result.push(String.fromCharCode(94)) :
+                                                                                        (arr[i] == 's') ? result.push(String.fromCharCode(95)) :
+                                                                                            (arr[i] == 't') ? result.push(String.fromCharCode(123)) :
+                                                                                                (arr[i] == 'u') ? result.push(String.fromCharCode(124)) :
+                                                                                                    (arr[i] == 'v') ? result.push(String.fromCharCode(125)) :
+                                                                                                        (arr[i] == 'w') ? result.push(String.fromCharCode(126)) :
+                                                                                                            (arr[i] == 'x') ? result.push(String.fromCharCode(93)) :
+                                                                                                                (arr[i] == 'y') ? result.push(String.fromCharCode(58)) :
+                                                                                                                    (arr[i] == 'z') ? result.push(String.fromCharCode(59)) :
+                                                                                                                        result.push(String.fromCharCode(45));
+            }
+            result = result.join('');
+            document.getElementById('userMsg').value = '';
+            encSpan.textContent = result;
+            encSpan.className = 'encryptClass';
+            decBtn.className = 'show';
+        } else {
+            var orgMess = [];
+            var orgResult = [];
+            for (let i = 0; i < result.length; i++) {
+                orgMess.push(result[i]);
+            }
+            for (let i = 0; i < orgMess.length; i++) {
+                (orgMess[i] == String.fromCharCode(33)) ? orgResult.push('a') :
+                    (orgMess[i] == String.fromCharCode(35)) ? orgResult.push('b') :
+                        (orgMess[i] == String.fromCharCode(36)) ? orgResult.push('c') :
+                            (orgMess[i] == String.fromCharCode(37)) ? orgResult.push('d') :
+                                (orgMess[i] == String.fromCharCode(38)) ? orgResult.push('e') :
+                                    (orgMess[i] == String.fromCharCode(40)) ? orgResult.push('f') :
+                                        (orgMess[i] == String.fromCharCode(41)) ? orgResult.push('g') :
+                                            (orgMess[i] == String.fromCharCode(42)) ? orgResult.push('h') :
+                                                (orgMess[i] == String.fromCharCode(47)) ? orgResult.push('i') :
+                                                    (orgMess[i] == String.fromCharCode(60)) ? orgResult.push('j') :
+                                                        (orgMess[i] == String.fromCharCode(61)) ? orgResult.push('k') :
+                                                            (orgMess[i] == String.fromCharCode(62)) ? orgResult.push('l') :
+                                                                (orgMess[i] == String.fromCharCode(63)) ? orgResult.push('m') :
+                                                                    (orgMess[i] == String.fromCharCode(64)) ? orgResult.push('n') :
+                                                                        (orgMess[i] == String.fromCharCode(91)) ? orgResult.push('o') :
+                                                                            (orgMess[i] == String.fromCharCode(92)) ? orgResult.push('p') :
+                                                                                (orgMess[i] == String.fromCharCode(93)) ? orgResult.push('q') :
+                                                                                    (orgMess[i] == String.fromCharCode(94)) ? orgResult.push('r') :
+                                                                                        (orgMess[i] == String.fromCharCode(95)) ? orgResult.push('s') :
+                                                                                            (orgMess[i] == String.fromCharCode(123)) ? orgResult.push('t') :
+                                                                                                (orgMess[i] == String.fromCharCode(124)) ? orgResult.push('u') :
+                                                                                                    (orgMess[i] == String.fromCharCode(125)) ? orgResult.push('v') :
+                                                                                                        (orgMess[i] == String.fromCharCode(126)) ? orgResult.push('w') :
+                                                                                                            (orgMess[i] == String.fromCharCode(93)) ? orgResult.push('x') :
+                                                                                                                (orgMess[i] == String.fromCharCode(58)) ? orgResult.push('y') :
+                                                                                                                    (orgMess[i] == String.fromCharCode(59)) ? orgResult.push('z') :
+                                                                                                                        orgResult.push(' ');
+            }
+            orgResult = orgResult.join('');
+            decSpan.textContent = orgResult;
+            decSpan.className = "decryptClass";
+        }
+    }
+    document.getElementById("userMsg").addEventListener("click", clearAll);
+    function clearAll() {
+        encSpan.textContent = '';
+        decSpan.textContent = '';
+        encSpan.className = '';
+        decSpan.className = '';
+        decBtn.className = 'hidden';
+        arr = [];
+    }
+</script>
+
+</html>
